@@ -26,6 +26,7 @@ def place_order(menu):
 
     # Launch the store and present a greeting to the customer
     print("Welcome to the Generic Take Out Restaurant.")
+    print("What would you like to order? ")
 
     # Create a continuous while loop so customers can order multiple items
     while True:
@@ -49,20 +50,21 @@ def place_order(menu):
                 i += 1
 
         # Ask customer to input menu item number
-        menu_selection = input("\nenter the item number you would like to order: ")
-
+        menu_selection = input("Type menu number: ")
+    
         # Update the order list using the update_order function
         # Send the order list, menu selection, and menu items as arguments
         order = update_order(order, menu_selection, menu_items)
 
         # Ask the customer if they would like to order anything else
         # Let the customer know if they should type 'n' or 'N' to quit
-        another_order = input("would you like to order anything else? (y/n): ")
+        print("\n(This will default to 1 if number is not entered)")
+        another_order = input("Would you like to keep ordering? (N) to quit: ")
 
         # Write a conditional statement that checks the user's input
         # The conditional statement should check for 'n' or 'N'
         if another_order.lower() == 'n':
-            print("thank you for your order")
+            print("Thank you for your order.")
 
             # Use list comprehension to create a list called prices_list,
             # which contains the total prices for each item in the order list:
@@ -113,7 +115,7 @@ def update_order(order, menu_selection, menu_items):
 
             # Ask the customer for the quantity of the menu item
             # Use the item name variable in the question
-            quantity = input(f"how many {item_name}(s) would you like to order? ")
+            quantity = input(f"What quantity of {item_name} would you like? ")
 
             # Check if the quantity is a number, default to 1 if not
             quantity = int(quantity) if quantity.isdigit() and int(quantity) > 0 else 1
@@ -133,7 +135,7 @@ def update_order(order, menu_selection, menu_items):
     # Print the menu selection and 
     # Tell the customer they didn't select a menu option
     else:
-        print(f"invalid menu option: {menu_selection}")
+        print(f"{menu_selection} was not a menu option.")
 
     # Return the updated order
     return order
